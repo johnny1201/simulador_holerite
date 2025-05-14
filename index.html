@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -6,22 +8,83 @@
   <style>
     body { font-family: Arial; max-width: 500px; margin: auto; padding: 20px; }
     label, input { display: block; margin-bottom: 10px; }
-    input[type="number"] { width: 100%; padding: 5px; }
+    input[type="number"], input[type="file"] { width: 100%; padding: 5px; }
     #resultado { margin-top: 20px; font-weight: bold; }
+    table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f0f0f0; }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
   <h1>Calculadora de Valor por Hora</h1>
-  
+
   <label for="salario">Salário Mensal (R$):</label>
   <input type="number" id="salario" placeholder="Ex: 2500" step="0.01">
 
-  <label for="horasSemana">Horas Trabalhadas por Semana:</label>
-  <input type="number" id="horasSemana" placeholder="Ex: 44" step="0.1">
+  <label for="horasMensais">Horas Trabalhadas por Mês:</label>
+  <input type="number" id="horasMensais" placeholder="Ex: 220" step="0.1">
 
-  <button onclick="calcularValorHora()">Calcular Valor da Hora</button>
+  <label for="adicionalNoturno">Adicional Noturno (%):</label>
+  <input type="number" id="adicionalNoturno" placeholder="Ex: 20" step="0.1" min="0" max="100">
 
-  <div id="resultado"></div>
+  <button id="calcularValorHora">Calcular Valor da Hora</button>
+
+  <div id="resultado">Valor estimado da sua hora trabalhada: R$ <span id="valorHora">0.00</span></div>
+
+  <h2>Registrar Jornada</h2>
+
+  <label for="data">Data:</label>
+  <input type="date" id="data">
+
+  <label for="entrada">Entrada:</label>
+  <input type="time" id="entrada">
+
+  <label for="saidaIntervalo">Saída para intervalo:</label>
+  <input type="time" id="saidaIntervalo">
+
+  <label for="retornoIntervalo">Retorno do intervalo:</label>
+  <input type="time" id="retornoIntervalo">
+
+  <label for="saidaFinal">Saída final:</label>
+  <input type="time" id="saidaFinal">
+
+  <button id="registrarJornada">Registrar Jornada</button>
+
+  <h2>Importar Jornadas via Excel</h2>
+  <p>O arquivo precisa ter as seguintes colunas:</p>
+  <ul>
+    <li><strong>data</strong>: Data da jornada (ex: 2025-05-14)</li>
+    <li><strong>entrada</strong>: Hora de entrada (ex: 08:00)</li>
+    <li><strong>saidaintervalo</strong>: Hora de saída para o intervalo (ex: 12:00)</li>
+    <li><strong>retornointervalo</strong>: Hora de retorno do intervalo (ex: 13:00)</li>
+    <li><strong>saidafinal</strong>: Hora de saída final (ex: 18:00)</li>
+  </ul>
+  <input type="file" id="inputExcel" accept=".xlsx, .xls" />
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Total Horas</th>
+        <th>Horas Extras</th>
+        <th>Horas Noturnas</th>
+        <th>Tempo Extra Noturno</th>
+        <th>Ganho</th>
+      </tr>
+    </thead>
+    <tbody id="corpoTabela"></tbody>
+    <tfoot>
+      <tr id="linhaTotais">
+        <td><strong>Total</strong></td>
+        <td id="totalHoras">00:00</td>
+        <td id="totalExtras">00:00</td>
+        <td id="totalNoturnas">00:00</td>
+        <td id="totalAdicional">00:00</td>
+        <td id="totalGanhos">R$ 0.00</td>
+      </tr>
+    </tfoot>
+  </table>
 
   <script src="script.js"></script>
 </body>
