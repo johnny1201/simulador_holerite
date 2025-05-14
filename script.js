@@ -8,6 +8,7 @@ document.getElementById("calcularValorHora").addEventListener("click", () => {
     valorHora = salario / horasMensais;
     document.getElementById("valorHora").innerText = valorHora.toFixed(2);
   }
+  document.getElementById('camposOcultos').style.display = 'block';
 });
 
 document.getElementById("registrarJornada").addEventListener("click", () => {
@@ -118,7 +119,7 @@ function atualizarTabela() {
       <td>${formatarHorasEmTempo(reg.horasExtras)}</td>
       <td>${formatarHorasEmTempo(reg.horasNoturnas)}</td>
       <td>${formatarHorasEmTempo(reg.tempoExtraNoturno)}</td>
-      <td>R$ ${reg.ganho.toFixed(2)}</td>
+      <td class="col-ganho">R$ ${reg.ganho.toFixed(2)}</td>
     `;
     corpoTabela.appendChild(tr);
 

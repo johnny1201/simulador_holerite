@@ -1,19 +1,9 @@
-
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <title>Calculadora de Hora Trabalhada</title>
-  <style>
-    body { font-family: Arial; max-width: 500px; margin: auto; padding: 20px; }
-    label, input { display: block; margin-bottom: 10px; }
-    input[type="number"], input[type="file"] { width: 100%; padding: 5px; }
-    #resultado { margin-top: 20px; font-weight: bold; }
-    table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-    th { background-color: #f0f0f0; }
-  </style>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
@@ -31,7 +21,7 @@
   <button id="calcularValorHora">Calcular Valor da Hora</button>
 
   <div id="resultado">Valor estimado da sua hora trabalhada: R$ <span id="valorHora">0.00</span></div>
-
+<div id="camposOcultos" style="display: none;">
   <h2>Registrar Jornada</h2>
 
   <label for="data">Data:</label>
@@ -61,7 +51,7 @@
     <li><strong>saidafinal</strong>: Hora de saída final (ex: 18:00)</li>
   </ul>
   <input type="file" id="inputExcel" accept=".xlsx, .xls" />
-
+</div>
   <table>
     <thead>
       <tr>
@@ -70,7 +60,7 @@
         <th>Horas Extras</th>
         <th>Horas Noturnas</th>
         <th>Tempo Extra Noturno</th>
-        <th>Ganho</th>
+        <th class="col-ganho">Ganho</th>
       </tr>
     </thead>
     <tbody id="corpoTabela"></tbody>
@@ -81,7 +71,7 @@
         <td id="totalExtras">00:00</td>
         <td id="totalNoturnas">00:00</td>
         <td id="totalAdicional">00:00</td>
-        <td id="totalGanhos">R$ 0.00</td>
+        <td id="totalGanhos" class="col-ganho">R$ 0.00</td>
       </tr>
     </tfoot>
   </table>
