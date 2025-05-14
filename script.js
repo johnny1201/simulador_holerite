@@ -8,7 +8,9 @@ document.getElementById("calcularValorHora").addEventListener("click", () => {
     valorHora = salario / horasMensais;
     document.getElementById("valorHora").innerText = valorHora.toFixed(2);
   }
-  document.getElementById('camposOcultos').style.display = 'block';
+  if (salario && horasMensais) {
+    document.getElementById('camposOcultos').style.display = 'block';
+  } else {alert("Verifique os campos salario e horas mensais e tente novamente");}
 });
 
 document.getElementById("registrarJornada").addEventListener("click", () => {
@@ -175,3 +177,28 @@ function handleFile(event) {
   };
   reader.readAsArrayBuffer(file);
 }
+
+flatpickr("#entrada", {
+  enableTime: true,
+  noCalendar: true,
+  dateFormat: "H:i",
+  time_24hr: true
+});
+flatpickr("#saidaIntervalo", {
+  enableTime: true,
+  noCalendar: true,
+  dateFormat: "H:i",
+  time_24hr: true
+});
+flatpickr("#retornoIntervalo", {
+  enableTime: true,
+  noCalendar: true,
+  dateFormat: "H:i",
+  time_24hr: true
+});
+flatpickr("#saidaFinal", {
+  enableTime: true,
+  noCalendar: true,
+  dateFormat: "H:i",
+  time_24hr: true
+});

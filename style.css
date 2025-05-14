@@ -5,6 +5,7 @@ body {
   padding: 20px;
   background-color: #f4fdf7; /* fundo verde bem claro */
   color: #333;
+  text-align: center;
 }
 
 h1, h2 {
@@ -18,13 +19,30 @@ label {
   display: block;
 }
 
+.form-container {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.input-data {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 input[type="number"],
 input[type="time"],
 input[type="date"],
 input[type="file"] {
-  width: 100%;
+  width: 50%;
   padding: 8px;
-  margin-bottom: 10px;
+  margin: 5px 75px;
   border-radius: 4px;
   border: 1px solid #ccc;
   box-sizing: border-box;
